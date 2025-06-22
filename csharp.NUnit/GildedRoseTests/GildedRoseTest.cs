@@ -34,5 +34,14 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.That(items[0].Quality, Is.EqualTo(3));
         }
+
+        [Test]
+        public void Should_Not_Reduce_Quality_Below_0()
+        {
+            var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
+            app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.That(items[0].Quality, Is.EqualTo(0));
+        }
     }
 }
