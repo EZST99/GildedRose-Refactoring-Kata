@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using GildedRoseKata;
-using NUnit.Framework;
 
-namespace GildedRoseTests;
-
-public class GildedRoseTest
+namespace GildedRoseTests
 {
-    [Test]
-    public void Foo()
+    public class GildedRoseTest
     {
-        var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-        var app = new GildedRose(items);
-        app.UpdateQuality();
-        Assert.That(items[0].Name, Is.EqualTo("fixme"));
+        private GildedRose app;
+
+        [Test]
+        public void Should_Reduce_SellIn_Value()
+        {
+            var items = new List<Item> { new Item { Name = "foo", SellIn = 10, Quality = 5 } };
+            app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.That(items[0].SellIn, Is.EqualTo(9));
+        }
     }
 }
