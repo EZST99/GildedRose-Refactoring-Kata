@@ -80,5 +80,14 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.That(items[0].Quality, Is.EqualTo(6));
         }
+        
+        [Test]
+        public void Should_Increase_Backstage_Quality_By_2_When_SellIn_LE_10()
+        {
+            var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 5 } };
+            app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.That(items[0].Quality, Is.EqualTo(7));
+        }
     }
 }
