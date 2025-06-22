@@ -61,5 +61,15 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.That(items[0].Quality, Is.EqualTo(50));
         }
+        
+        [Test]
+        public void Should_Not_Change_Sulfuras_Quality_Or_SellIn()
+        {
+            var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
+            app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.That(items[0].SellIn, Is.EqualTo(10));
+            Assert.That(items[0].Quality, Is.EqualTo(80));
+        }
     }
 }
