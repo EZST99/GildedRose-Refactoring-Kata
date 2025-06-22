@@ -25,5 +25,14 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.That(items[0].Quality, Is.EqualTo(4));
         }
+        
+        [Test]
+        public void Should_Reduce_Quality_Twice_As_Fast_After_SellByDate()
+        {
+            var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 5 } };
+            app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.That(items[0].Quality, Is.EqualTo(3));
+        }
     }
 }
